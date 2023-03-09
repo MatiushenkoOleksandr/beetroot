@@ -12,24 +12,53 @@ namespace ConsoleApp1
         {
             var enteredNumber1 = Convert.ToInt16(Console.ReadLine());
             var enteredNumber2 = Convert.ToInt16(Console.ReadLine());
-            var result = Su342342m(enteredNumber1, enteredNumber2);
-            var resuklt3 = Max(result, enteredNumber1);
+            var enteredNumber3 = Convert.ToInt16(Console.ReadLine());
+            var enteredNumber4 = Convert.ToInt16(Console.ReadLine());
+            var result = Sum(enteredNumber1, enteredNumber2);
+            var resultMax = Max(enteredNumber2, enteredNumber1);
+            var resultMin = Min(enteredNumber1, enteredNumber2);
 
+            var resultMax2 = Max(enteredNumber2, enteredNumber1, enteredNumber3, enteredNumber4);
+            var resultMin2 = Min(enteredNumber2, enteredNumber1, enteredNumber3, enteredNumber4);
+
+            Console.WriteLine("Sum from number1 to number 2 = ");
             Console.WriteLine(result);
+
+            Console.WriteLine("Max from number 1 and number 2 = ");
+            Console.WriteLine(resultMax);
+
+            Console.WriteLine("Min from number 1 and number 2 = ");
+            Console.WriteLine(resultMin);
+
+
+            Console.WriteLine("Min from number 1, number 2, number 3, number 4   = ");
+            Console.WriteLine(resultMin2);
+
+
+            Console.WriteLine("Max from number 1, number 2, number 3, number 4   = ");
+            Console.WriteLine(resultMax2);
+
+            Console.WriteLine("enter text and count");
+            var enteredText = Console.ReadLine();
+            var enteredCount = Convert.ToInt16(Console.ReadLine());
+
+            var resultRepeat = Repeat(enteredText, enteredCount);
+            Console.WriteLine(resultRepeat);
+            Console.ReadKey();
         }
 
-        static int Su342342m(int from, int to)
+        static int Sum(int from, int to)
         {
             bool fromTo = from > to;
             if (fromTo)
             {
-                return Su342342m(to, from);
+                return Sum(to, from);
             }
             if (from == to)
             {
                 return from;
             }
-            return from + Su342342m(from + 1, to);
+            return from + Sum(from + 1, to);
         }
 
         static int Max(int num1, int num2)
