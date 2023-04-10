@@ -41,10 +41,17 @@ namespace lesson10
             var customer = GetCustomerById(idCustomer);
             var receipt = new Receipt();
             receipt.Date= DateTime.Now;
-            var product = GetProductById(idProduct);
+            var product = new Product();
+            try
+            {
+                product = GetProductById(idProduct);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             receipt.TotalPrice = product.Price * count;
             receipt.CustomerName = customer.Name;
-
             var productToReceipt = new Product();
             productToReceipt.Name = product.Name;
             productToReceipt.Price = product.Price;
@@ -81,15 +88,14 @@ namespace lesson10
         }
         private Product GetProductById(int id)
         {
-            var product = new Product();
             foreach (var item in Products)
             {
                 if (item.Id == id)
                 {
-                    product= item;
+                    return item;
                 }
             }
-            return product;
+            throw new Exception("No customer with current id");
         }
         public void AddQuantity(int id, int count)
         {

@@ -21,10 +21,10 @@ internetShop.Customers.Add(customer1);
 
 
 Console.WriteLine("MOTHOD STARTED");
-internetShop.AddNewProduct();
+//internetShop.AddNewProduct();
 Console.WriteLine("METHOD FINISHED");
 
-var totalPrice = internetShop.CreateReceipt(customer1.Id, 2, 23);
+var totalPrice = internetShop.CreateReceipt(customer1.Id, 29, 23);
 
 Console.WriteLine(totalPrice);
 
