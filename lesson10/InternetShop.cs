@@ -31,7 +31,12 @@ namespace lesson10
             product1.Price = priceFromConsole;
             var quantituFromConsole = Convert.ToInt32(Console.ReadLine());
             product1.Quantity = quantituFromConsole;
-            product1.Id = Products[Products.Count - 1].Id + 1;
+            try
+            { product1.Id = Products[Products.Count - 1].Id + 1; }
+            catch (Exception ex) 
+            {
+            Console.WriteLine("Exeption interupted adding new product");
+            }
             Products.Add(product1);
         }
 
