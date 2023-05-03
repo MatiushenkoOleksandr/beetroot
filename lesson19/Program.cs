@@ -26,8 +26,23 @@ for (int i = 0; i < persons.Count - 1; i++)
 
     }
 }
+var firstPersonWithMostSameWords = new Person();
+var secondPersonWithMostSameWords = new Person();
+var countOfSameWords = 0;
 
-var twoPersonsWithSameWords = persons.SelectMany(r => persons.Where(m => m.Id != r.Id).Select(p => p.GetCountOfSameWords(r)));
+for (int i = 0; i < persons.Count; i++)
+{
+
+    var a = persons.Where(a => a.Id != persons[i].Id).OrderByDescending(b => b.GetCountOfSameWords(persons[i])).First();
+    var temp = persons[i].GetCountOfSameWords(a);
+    if (countOfSameWords < temp)
+    {
+        firstPersonWithMostSameWords = a;
+        secondPersonWithMostSameWords = persons[i];
+        countOfSameWords = temp;
+    }
+}
+
 var firstPersonWithSameFriend = new Person();
 var secondPersonWithSameFriend = new Person();
 
