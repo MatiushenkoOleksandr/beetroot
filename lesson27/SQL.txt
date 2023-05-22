@@ -1,0 +1,15 @@
+select * from persons where gender = 'Male'
+
+select * from persons where age > 18
+
+select * from persons where address is null
+
+/**declare @addage int set @addage = 1 select * from persons where age + @addage**/
+
+update persons set age = age + 1
+
+delete from persons where address is null
+
+select count (id) from persons 
+
+select age, count(*) from persons group by age
