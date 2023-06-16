@@ -1,0 +1,79 @@
+<h1 mat-dialog-title>Addig new car</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSave(form)" *ngIf="showForm">
+    <!-- <div class="form-contailer">
+      <div class="form-group-container"> -->
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input
+        matInput
+        name="model"
+        placeholder="Type Model"
+        formControlName="model"
+        #modelInput
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <input
+        matInput
+        name="brand"
+        placeholder="Type Brand"
+        formControlName="brand"
+        #brandInput
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fuel</mat-label>
+      <mat-select name="fuelType" formControlName="fuelType">
+        <mat-option *ngFor="let option of fuelOptions" [value]="option.value">
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vin</mat-label>
+      <input
+        matInput
+        placeholder="Type Prepaid Amount"
+        formControlName="vin"
+        #nameInput
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Milage</mat-label>
+      <input
+        matInput
+        placeholder="Type Prepaid Amount"
+        formControlName="milage"
+        #nameInput
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Year</mat-label>
+      <input
+        matInput
+        placeholder="Type Prepaid Amount"
+        formControlName="year"
+        #nameInput
+      />
+    </mat-form-field>
+    <!-- </div>
+    </div> -->
+    <div>
+      <div mat-dialog-actions align="end">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!form.valid"
+          [mat-dialog-close]="data"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

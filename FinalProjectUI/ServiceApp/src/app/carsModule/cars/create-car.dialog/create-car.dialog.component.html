@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Addig new car</h1>
+<div mat-dialog-content>
+  <div class="form-contailer">
+    <div class="form-group-container">
+      <div>
+        <p>Brand</p>
+        <mat-form-field>
+          <mat-label>Enter Brand</mat-label>
+          <input matInput [(ngModel)]="data.brand" />
+        </mat-form-field>
+      </div>
+      <div>
+        <p>Model</p>
+        <mat-form-field>
+          <mat-label>Enter Model</mat-label>
+          <input matInput [(ngModel)]="data.model" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <p>Vin</p>
+        <mat-form-field>
+          <mat-label>Enter Vin</mat-label>
+          <input matInput [(ngModel)]="data.vin" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-group-container">
+      <div>
+        <p>Year</p>
+        <mat-form-field>
+          <mat-label>Enter Year</mat-label>
+          <input matInput [(ngModel)]="data.year" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <p>Fuel Type</p>
+        <mat-form-field>
+          <mat-label>Enter Fuel Type</mat-label>
+          <mat-select [(ngModel)]="data.fuelType">
+            <mat-option
+              *ngFor="let option of fuelOptions"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <p>Milage</p>
+        <mat-form-field>
+          <mat-label>Enter Milage</mat-label>
+          <input type="number" matInput [(ngModel)]="data.milage" />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

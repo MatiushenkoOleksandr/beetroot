@@ -1,0 +1,74 @@
+<div class="form-contailer">
+  <div class="form-group-contailer">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [(ngModel)]="filterModel.date" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker> </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Hour To</mat-label>
+      <input
+        matInput
+        [(ngModel)]="filterModel.hourTo"
+        placeholder="Type hour To"
+        #nameInput
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Hour From</mat-label>
+      <input
+        matInput
+        [(ngModel)]="filterModel.hourFrom"
+        placeholder="Type hour"
+        #nameInput
+      />
+    </mat-form-field>
+  </div>
+  <div class="form-group-contailer">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select name="status" [(ngModel)]="filterModel.status">
+        <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Payment Status</mat-label>
+      <mat-select name="status" [(ngModel)]="filterModel.paymentStatus">
+        <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Car</mat-label>
+      <mat-select name="carId" [(ngModel)]="filterModel.carId">
+        <mat-option
+          *ngFor="let option of carInputOptions"
+          [value]="option.value"
+        >
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div>
+  <div class="button-container">
+    <button mat-raised-button (click)="applyFilter()">Apply Filters</button>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button (click)="addReservation()">+ Add new</button>
+  </div>
+</div>
+<div></div>
+<app-reservations-table
+  (onReservationDeleted)="refreshReservations()"
+  [reservations]="reservations"
+></app-reservations-table>

@@ -1,0 +1,99 @@
+<div>
+  <div class="header">Add new reservation</div>
+  <form [formGroup]="form" (ngSubmit)="onSave(form)">
+    <div class="form-contailer">
+      <div class="form-group-container">
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            placeholder="Type price"
+            formControlName="price"
+            #nameInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Hour</mat-label>
+          <input
+            matInput
+            placeholder="Type hour"
+            formControlName="hour"
+            #nameInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input
+            matInput
+            formControlName="treatmentDate"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker> </mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select name="status" formControlName="status">
+            <mat-option
+              *ngFor="let option of statusOptions"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group-container">
+        <mat-form-field>
+          <mat-label>Payment Status</mat-label>
+          <mat-select name="paymentStatus" formControlName="paymentStatus">
+            <mat-option
+              *ngFor="let option of paymentStatusOptions"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Car</mat-label>
+          <mat-select name="carId" formControlName="carId">
+            <mat-option
+              *ngFor="let option of carInputOptions"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Prepaid Amount</mat-label>
+          <input
+            matInput
+            placeholder="Type Prepaid Amount"
+            formControlName="prepaidAmount"
+            #nameInput
+          />
+        </mat-form-field>
+        <div mat-dialog-actions align="center">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </form>
+</div>

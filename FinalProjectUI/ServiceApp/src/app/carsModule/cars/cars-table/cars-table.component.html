@@ -1,0 +1,45 @@
+<table mat-table [dataSource]="cars" class="mat-elevation-z8">
+  <ng-container matColumnDef="vin">
+    <th mat-header-cell *matHeaderCellDef>Vin</th>
+    <td mat-cell *matCellDef="let element">{{ element.vin }}</td>
+  </ng-container>
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef>Year</th>
+    <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+  </ng-container>
+  <ng-container matColumnDef="brand">
+    <th mat-header-cell *matHeaderCellDef>Brand</th>
+    <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+  </ng-container>
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef>Model</th>
+    <td mat-cell *matCellDef="let element">{{ element.model }}</td>
+  </ng-container>
+  <ng-container matColumnDef="milage">
+    <th mat-header-cell *matHeaderCellDef>Milage</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.milage }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="fuelType">
+    <th mat-header-cell *matHeaderCellDef>Fuel Type</th>
+    <td mat-cell *matCellDef="let element">
+      {{ getFuelTypeString(element.fuelType) }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deleteCar(element.id)">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    (click)="updateCar(row.id)"
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+  ></tr>
+</table>
