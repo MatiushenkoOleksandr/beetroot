@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { SelectInput } from 'src/app/common/models/selectInput';
 import { HttpService } from 'src/app/http.service';
@@ -28,7 +33,8 @@ export class EditReservationComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _httpService: HttpService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,11 +44,14 @@ export class EditReservationComponent implements OnInit {
       .subscribe((result) => {
         this.treatmentDate.setValue(new Date(result.date));
         this.form = this.fb.group({
-          date: this.treatmentDate,
-          price: [result.price],
-          hour: [result.hour],
-          paymentStatus: [result.paymentStatus],
-          status: [result.status],
+          date: [this.treatmentDate, [Validators.required]],
+          price: [result.price, [Validators.required]],
+          hour: [
+            result.hour,
+            [Validators.required, Validators.min(0), Validators.max(24)],
+          ],
+          paymentStatus: [result.paymentStatus, [Validators.required]],
+          status: [result.status, [Validators.required]],
           prepaidAmount: [result.prepaidAmount],
           carId: [result.carId],
           id: [result.id],
@@ -60,7 +69,9 @@ export class EditReservationComponent implements OnInit {
       console.log(value.date);
     }
 
-    this._httpService.updateReservation(value).subscribe();
+    this._httpService
+      .updateReservation(value)
+      .subscribe((a) => this.router.navigate([`reservations`]));
   }
 
   statusOptions: SelectInput<ReservationStatus>[] = [

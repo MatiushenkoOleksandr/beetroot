@@ -6,6 +6,9 @@
 @tailwind utilities;
 @include mat.core();
 
+
+$main-pink: #c2185b;
+
 html,
 body {
   height: 100%;
@@ -23,7 +26,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-right: 20px;
   margin-top:20px
 }
-.form-contailer{
+.form-container{
   display: flex;
   padding: 20px;
   flex-direction: row;
@@ -35,9 +38,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top:15px;
   }
 }
+.button-list-container{
+  display: flex;
+  flex-direction: row;
+}
 .button-container{
-  margin-top:5px;
+  margin-top: 5px;
   width: 10em;
+  margin-bottom: 20px;
+  margin-right: 15px;
+
   button{
     width: 100%;
   }

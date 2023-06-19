@@ -28,7 +28,8 @@ export class CarsTableComponent {
     return FuelType[fuelType];
   }
 
-  deleteCar(id: string) {
+  deleteCar(event: any, id: string) {
+    event.stopPropagation();
     this.HttpService.deleteCar(id).subscribe(() => {
       this.onCarDeleted.emit(null);
     });

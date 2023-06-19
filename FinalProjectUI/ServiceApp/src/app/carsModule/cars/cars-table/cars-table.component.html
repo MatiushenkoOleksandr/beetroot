@@ -30,7 +30,7 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>Delete</th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="deleteCar(element.id)">
+      <button (click)="deleteCar($event, element.id)">
         <mat-icon>delete_outline</mat-icon>
       </button>
     </td>

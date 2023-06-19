@@ -36,12 +36,8 @@ export class PersonsComponentComponent implements OnInit {
       data: this.customerModel,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      this.customerModel = result;
-      this.HttpService.createPerson(result).subscribe((a) =>
-        this.refreshPersons()
-      );
+    dialogRef.afterClosed().subscribe(() => {
+      this.refreshPersons();
     });
   }
 }

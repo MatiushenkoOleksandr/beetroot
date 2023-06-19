@@ -1,5 +1,5 @@
-<div class="form-contailer">
-  <div class="form-group-contailer">
+<div class="form-container">
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Date</mat-label>
       <input matInput [(ngModel)]="filterModel.date" [matDatepicker]="picker" />
@@ -8,7 +8,8 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker> </mat-datepicker>
     </mat-form-field>
-
+  </div>
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Hour To</mat-label>
       <input
@@ -18,6 +19,8 @@
         #nameInput
       />
     </mat-form-field>
+  </div>
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Hour From</mat-label>
       <input
@@ -28,7 +31,7 @@
       />
     </mat-form-field>
   </div>
-  <div class="form-group-contailer">
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Status</mat-label>
       <mat-select name="status" [(ngModel)]="filterModel.status">
@@ -37,6 +40,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Payment Status</mat-label>
       <mat-select name="status" [(ngModel)]="filterModel.paymentStatus">
@@ -45,7 +50,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+  </div>
+  <div class="form-input">
     <mat-form-field>
       <mat-label>Car</mat-label>
       <mat-select name="carId" [(ngModel)]="filterModel.carId">
@@ -59,7 +65,7 @@
     </mat-form-field>
   </div>
 </div>
-<div>
+<div class="button-list-container">
   <div class="button-container">
     <button mat-raised-button (click)="applyFilter()">Apply Filters</button>
   </div>

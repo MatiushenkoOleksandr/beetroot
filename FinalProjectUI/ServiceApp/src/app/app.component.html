@@ -8,20 +8,22 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <app-header></app-header>
-<nav mat-tab-nav-bar [tabPanel]="tabPanel" [backgroundColor]="'accent'">
-  <a
-    mat-tab-link
-    *ngFor="let link of navLinks"
-    [routerLink]="link.link"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
-  >
-    {{ link.label }}
-  </a>
-</nav>
-<mat-tab-nav-panel #tabPanel>
-  <div class="component-container">
-    <router-outlet></router-outlet>
-  </div>
-</mat-tab-nav-panel>
+<div class="app-container">
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a
+      mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.link"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      {{ link.label }}
+    </a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <div class="component-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-tab-nav-panel>
+</div>

@@ -15,6 +15,7 @@ import {
   ReservationStatus,
 } from 'src/app/httpModals';
 import { HttpService } from 'src/app/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-reservation',
@@ -29,18 +30,24 @@ export class AddReservationComponent {
   treatmentDate = new FormControl(new Date());
   selectedTreatmentDate: Date | null = null;
 
-  constructor(private fb: FormBuilder, private _httpService: HttpService) {}
+  constructor(
+    private fb: FormBuilder,
+    private _httpService: HttpService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      date: [null],
-      hour: [null],
-      price: [null],
-      status: [null],
-      paymentStatus: [null],
+      price: [null, [Validators.required]],
+      hour: [
+        null,
+        [Validators.required, Validators.min(0), Validators.max(24)],
+      ],
+      paymentStatus: [null, [Validators.required]],
+      status: [null, [Validators.required]],
       prepaidAmount: [null],
       carId: [null],
-      treatmentDate: this.treatmentDate,
+      id: [null],
     });
     this.treatmentDate.valueChanges.subscribe((v) => {
       this.selectedTreatmentDate = v;
@@ -66,7 +73,9 @@ export class AddReservationComponent {
     }
     var date = moment(value.date);
     value.date = date.toDate();
-    this._httpService.saveReservation(value).subscribe();
+    this._httpService.saveReservation(value).subscribe((a) => {
+      this.router.navigate([`reservations`]);
+    });
   }
 
   statusOptions: SelectInput<ReservationStatus>[] = [

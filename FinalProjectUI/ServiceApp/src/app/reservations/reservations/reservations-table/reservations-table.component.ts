@@ -46,7 +46,8 @@ export class ReservationsTableComponent {
       this.onReservationDeleted.emit(null);
     });
   }
-  tableElementClicked(id: string) {
+  tableElementClicked(event: any, id: string) {
+    event.stopPropagation();
     this.router.navigate([`reservations/${id}/edit`]);
   }
 }
