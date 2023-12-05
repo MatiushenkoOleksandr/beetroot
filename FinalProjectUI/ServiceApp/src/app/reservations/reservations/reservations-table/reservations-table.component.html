@@ -44,10 +44,19 @@
     <td mat-cell *matCellDef="let element">{{ element.customerPhone }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="delete">
+  <ng-container matColumnDef="showInfo">
+    <th mat-header-cell *matHeaderCellDef>Show Info</th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="showInfo($event, element.comments)">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete" *ngIf="isAdmin">
     <th mat-header-cell *matHeaderCellDef>Delete</th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="deleteReservation(element.id)">
+      <button (click)="deleteReservation($event, element.id)">
         <mat-icon>delete_outline</mat-icon>
       </button>
     </td>

@@ -45,14 +45,17 @@
     <mat-form-field>
       <mat-label>Payment Status</mat-label>
       <mat-select name="status" [(ngModel)]="filterModel.paymentStatus">
-        <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+        <mat-option
+          *ngFor="let option of paymentStatusOptions"
+          [value]="option.value"
+        >
           {{ option.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div class="form-input">
-    <mat-form-field>
+    <mat-form-field *ngIf="carInputOptions.length > 0">
       <mat-label>Car</mat-label>
       <mat-select name="carId" [(ngModel)]="filterModel.carId">
         <mat-option
@@ -70,7 +73,9 @@
     <button mat-raised-button (click)="applyFilter()">Apply Filters</button>
   </div>
   <div class="button-container">
-    <button mat-raised-button (click)="addReservation()">+ Add new</button>
+    <button mat-raised-button *ngIf="isAdmin" (click)="addReservation()">
+      + Add new
+    </button>
   </div>
 </div>
 <div></div>

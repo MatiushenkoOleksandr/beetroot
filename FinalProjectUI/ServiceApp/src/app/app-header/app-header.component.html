@@ -1,3 +1,9 @@
 <div class="header-container">
   <h1>Service application <mat-icon>build</mat-icon></h1>
+  <button mat-raised-button *ngIf="!user?.token" (click)="navigateToLogin()">
+    LOGIN
+  </button>
+  <button mat-raised-button *ngIf="user?.token" (click)="logout()">
+    LOGOUT
+  </button>
 </div>

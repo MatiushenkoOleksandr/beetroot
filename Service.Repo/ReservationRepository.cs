@@ -26,11 +26,6 @@ namespace Service.Repository
             await _context.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<ReservationEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Delete(Guid id)
         {
             var reservation = _context.Reservations.FirstOrDefault(a => a.Id == id);
@@ -49,12 +44,6 @@ namespace Service.Repository
         {
             return await _context.Reservations.Include(a=>a.Car).ThenInclude(b=>b.Owner).ToListAsync();
         }
-
-        public Task<IEnumerable<ReservationEntity>> GetRange(IEnumerable<Guid> keys)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Update(ReservationEntity entity)
         {
             var reservationEntity = _context.Reservations.FirstOrDefault(a => a.Id == entity.Id);
@@ -69,6 +58,7 @@ namespace Service.Repository
             reservationEntity.PaymentStatus = entity.PaymentStatus;
             reservationEntity.Car = entity.Car;
             reservationEntity.PrepaidAmount = entity.PrepaidAmount;
+            reservationEntity.Comments = entity.Comments;
             _context.Reservations.Update(reservationEntity);
             await _context.SaveChangesAsync();
         }

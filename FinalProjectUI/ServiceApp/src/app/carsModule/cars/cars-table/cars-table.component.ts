@@ -41,7 +41,6 @@ export class CarsTableComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       this.onCarDeleted.emit(null);
     });
   }

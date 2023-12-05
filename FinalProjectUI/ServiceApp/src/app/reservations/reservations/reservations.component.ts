@@ -1,5 +1,5 @@
 import { HttpService } from 'src/app/http.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import {
   FilterReservations,
   PaymentStatus,
@@ -8,14 +8,21 @@ import {
 } from 'src/app/httpModals';
 import { Router } from '@angular/router';
 import { SelectInput } from 'src/app/common/models/selectInput';
+import { BaseComponent } from 'src/app/base/base.component';
 
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.scss'],
 })
-export class ReservationsComponent implements OnInit {
-  constructor(private HttpService: HttpService, private router: Router) {}
+export class ReservationsComponent extends BaseComponent implements OnInit {
+  constructor(
+    private HttpService: HttpService,
+    private router: Router,
+    injector: Injector
+  ) {
+    super(injector);
+  }
   carInputOptions: SelectInput<string>[] = [];
   filterModel: FilterReservations = {
     carId: undefined,

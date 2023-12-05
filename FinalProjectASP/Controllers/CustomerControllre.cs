@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
 using FinalProjectASP.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Logic;
 using Service.Repository.Entities;
 using Servis.Repository.Entities;
+using System.Data;
 using System.Formats.Asn1;
 
 namespace FinalProjectASP.Controllers
 
 {
+    [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("[controller]")]
     public class CustomerController : ControllerBase

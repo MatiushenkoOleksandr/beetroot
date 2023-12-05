@@ -56,8 +56,6 @@ export class HttpService {
     return this.http.delete(`https://localhost:7170/Reservation/${id}`);
   }
   saveReservation(reservation: Reservation) {
-    console.log(reservation);
-
     let valueDate: string = moment(reservation.date).format('yyyy-MM-DD');
     reservation.date = valueDate;
     return this.http.post('https://localhost:7170/Reservation', reservation);

@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Type username"
+          formControlName="username"
+          #nameInput
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Type password"
+          formControlName="password"
+          #nameInput
+        />
+      </mat-form-field>
+      <div mat-dialog-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
+      </div>
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+        {{ error }}
+      </div>
+    </form>
+  </div>
+</div>

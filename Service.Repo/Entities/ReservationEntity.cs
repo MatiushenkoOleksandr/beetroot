@@ -18,6 +18,7 @@ namespace Service.Repository.Entities
         public PaymentStatus PaymentStatus { get; set; }
         public int PrepaidAmount { get; set; }
         public Guid CarId { get; set; }
+        public string Comments { get; set; }
 
         [ForeignKey("CarId")]
         public virtual CarEntity Car { get; set; }

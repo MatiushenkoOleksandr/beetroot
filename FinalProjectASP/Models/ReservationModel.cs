@@ -12,6 +12,7 @@ namespace FinalProjectASP.Models
         public PaymentStatus PaymentStatus { get; set; }
         public int PrepaidAmount { get; set; }
         public Guid CarId { get; set; }
+        public string Comments {get; set; }
 
     }
 }

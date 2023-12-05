@@ -27,14 +27,14 @@ export class CreateCarDialogComponent implements OnInit {
         year: [null, [Validators.required]],
         fuelType: [null, [Validators.required]],
         vin: [null, [Validators.required]],
-        clientId: [null],
+        clientId: [this.data.clientId],
         id: [null],
       });
     }
   }
   onSave(formData: any) {
     let value = formData.value as Car;
-    console.log(value);
+
     this._httpService.createCar(value).subscribe();
   }
 

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonsComponentComponent } from './customersModule/persons.component/persons.component.component';
 import { PersonsTableComponent } from './customersModule/persons-table/persons-table.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgFor, NgIf } from '@angular/common';
@@ -30,6 +30,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { UpdateCarDialogComponent } from './carsModule/update-car.dialog/update-car.dialog.component';
 import { EditReservationComponent } from './reservations/edit-reservation/edit-reservation.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
+import { LoginComponent } from './auth/login/login.component';
+import { JwtInterceptor } from './auth/JwtInterceptor';
+import { ShowInfoDialogComponent } from './reservations/reservations/reservations-table/show-info.dialog/show-info.dialog.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,8 @@ import { AppHeaderComponent } from './app-header/app-header.component';
     UpdateCarDialogComponent,
     EditReservationComponent,
     AppHeaderComponent,
+    LoginComponent,
+    ShowInfoDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,8 +73,11 @@ import { AppHeaderComponent } from './app-header/app-header.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    TextFieldModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

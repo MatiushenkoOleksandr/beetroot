@@ -46,7 +46,8 @@ export class ReservationListModel {
     public carId: string,
     public car: string,
     public customerName: string,
-    public customerPhone: string
+    public customerPhone: string,
+    public comments: string
   ) {}
 }
 
@@ -59,6 +60,7 @@ export interface Reservation {
   paymentStatus: PaymentStatus;
   prepaidAmount: number;
   carId: string;
+  comments: string;
 }
 export interface FilterReservations {
   date: Date | undefined;

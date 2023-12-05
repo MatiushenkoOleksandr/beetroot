@@ -27,8 +27,6 @@ export class AddReservationComponent {
   flag: boolean = true;
   cars: Car[] = [];
   carInputOptions: SelectInput<string>[] = [];
-  treatmentDate = new FormControl(new Date());
-  selectedTreatmentDate: Date | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -48,11 +46,10 @@ export class AddReservationComponent {
       prepaidAmount: [null],
       carId: [null],
       id: [null],
+      date: [null],
+      comments: [null],
     });
-    this.treatmentDate.valueChanges.subscribe((v) => {
-      this.selectedTreatmentDate = v;
-      console.log(v);
-    });
+
     this._httpService.getCars().subscribe((result) => {
       this.cars = result;
       this.carInputOptions = result.map((a) => {
@@ -66,11 +63,7 @@ export class AddReservationComponent {
 
   onSave(hui: any) {
     let value = hui.value as Reservation;
-    console.log(this.selectedTreatmentDate);
-    if (!!this.selectedTreatmentDate) {
-      value.date = this.selectedTreatmentDate;
-      console.log(value.date);
-    }
+
     var date = moment(value.date);
     value.date = date.toDate();
     this._httpService.saveReservation(value).subscribe((a) => {

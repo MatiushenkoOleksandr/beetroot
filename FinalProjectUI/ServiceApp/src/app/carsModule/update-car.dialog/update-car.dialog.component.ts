@@ -27,7 +27,6 @@ export class UpdateCarDialogComponent {
   ngOnInit(): void {
     if (!!this.data) {
       this._httpService.getCarById(this.data).subscribe((res) => {
-        console.log(res);
         this.form = this.fb.group({
           brand: [res.brand],
           model: [res.model],
@@ -45,7 +44,6 @@ export class UpdateCarDialogComponent {
 
   onSave(formData: any) {
     let value = formData.value as Car;
-    console.log(value);
     this._httpService.saveUpdateCar(value).subscribe();
   }
 

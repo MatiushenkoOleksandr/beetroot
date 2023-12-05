@@ -14,6 +14,7 @@ namespace FinalProjectASP.Models
         public Guid CarId { get; set; }
         public string Car {get; set; }
         public string CustomerName { get; set; }
-        public string CustomerPhone { get; set; }
+        public string? CustomerPhone { get; set; }
+        public string Comments { get; set; }
     }
 }

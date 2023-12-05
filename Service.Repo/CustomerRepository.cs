@@ -38,22 +38,11 @@ namespace Service.Repository
 
         }
 
-        public IEntity<Guid> Get(Guid key)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<CustomerEntity>> GetAll()
         {
             return await _context.Customers.Include(a => a.Cars).ToListAsync();
 
         }
-
-        public Task<IEnumerable<CustomerEntity>> GetRange(IEnumerable<Guid> keys)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task Update(CustomerEntity entity)
         {
             throw new NotImplementedException();

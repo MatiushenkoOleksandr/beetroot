@@ -45,10 +45,8 @@ export class CarsComponent implements OnInit {
       data: this.carModel,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      this.carModel = result;
-      this.HttpService.createCar(result).subscribe((a) => this.refreshCars());
+    dialogRef.afterClosed().subscribe(() => {
+      this.refreshCars();
     });
   }
 }

@@ -55,6 +55,7 @@ export class EditReservationComponent implements OnInit {
           prepaidAmount: [result.prepaidAmount],
           carId: [result.carId],
           id: [result.id],
+          comments: [result.comments],
         });
 
         this.showForm = true;
@@ -63,10 +64,8 @@ export class EditReservationComponent implements OnInit {
 
   onSave(formData: any) {
     let value = formData.value as Reservation;
-    console.log(this.selectedTreatmentDate);
     if (!!this.selectedTreatmentDate) {
       value.date = this.selectedTreatmentDate;
-      console.log(value.date);
     }
 
     this._httpService

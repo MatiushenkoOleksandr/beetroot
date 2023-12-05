@@ -15,7 +15,6 @@ export class PersonsComponentComponent implements OnInit {
   ngOnInit(): void {
     this.HttpService.getPersons().subscribe((result) => {
       this.customers = result;
-      console.log(this.customers);
     });
   }
   customerModel: Customer = {
@@ -27,7 +26,6 @@ export class PersonsComponentComponent implements OnInit {
   refreshPersons() {
     this.HttpService.getPersons().subscribe((result) => {
       this.customers = result;
-      console.log(this.customers);
     });
   }
 

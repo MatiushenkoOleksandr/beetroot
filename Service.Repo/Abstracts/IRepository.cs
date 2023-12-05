@@ -11,12 +11,9 @@ namespace Service.Repository.Abstracts
      where TEntity : IEntity<TKey>
     {
         Task Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-        Task<TEntity> Get(TKey key);
-        Task<IEnumerable<TEntity>> GetRange(IEnumerable<TKey> keys);
+        Task<TEntity> Get(TKey key);   
         Task<IEnumerable<TEntity>> GetAll();
         Task Delete(TKey id);
         Task Update(TEntity entity);
-        //  ..., Update, Delete methods
     }
 }

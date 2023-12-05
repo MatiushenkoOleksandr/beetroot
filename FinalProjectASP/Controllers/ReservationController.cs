@@ -1,16 +1,19 @@
 ﻿using AutoMapper;
 using FinalProjectASP.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Logic;
 using Service.Logic.Dto;
 using Service.Repository.Entities;
 using Servis.Repository.Entities;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Data;
 using System.Net;
 
 namespace FinalProjectASP.Controllers
 
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ReservationController: ControllerBase
@@ -33,12 +36,14 @@ namespace FinalProjectASP.Controllers
         //    var reservationModels = _mapper.Map<IEnumerable<ReservationListModel>>(reservations);
         //    return reservationModels;
         //}
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task CreateReservation(ReservationModel model)
         {
             var reservationEntity = _mapper.Map<ReservationEntity>(model);
             await _reservationService.CreateReservation(reservationEntity);
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("{id}")]
         public async Task DeleteReservation(Guid id)
@@ -52,7 +57,7 @@ namespace FinalProjectASP.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK)]
         public async Task<IEnumerable<ReservationListModel>> GetFilteredReservations([FromQuery]ReservationFilterInputModel filter)
         {
-            var dto = _mapper.Map<ReservationFilterInputDto>(filter);
+           var dto = _mapper.Map<ReservationFilterInputDto>(filter);
            var reservationEntity = await _reservationService.GetFilteredReservations(dto);
             return _mapper.Map<IEnumerable<ReservationListModel>>(reservationEntity);
         }
@@ -65,8 +70,9 @@ namespace FinalProjectASP.Controllers
             return mapedReservation;
 
         }
-        [HttpPut] public 
-        async Task UpdateReservation(ReservationModel model)
+        [Authorize(Roles = "Admin")]
+        [HttpPut] 
+        public async Task UpdateReservation(ReservationModel model)
         {
             var reservationEntity = _mapper.Map<ReservationEntity>(model);
             await _reservationService.UpdateReservation(reservationEntity);

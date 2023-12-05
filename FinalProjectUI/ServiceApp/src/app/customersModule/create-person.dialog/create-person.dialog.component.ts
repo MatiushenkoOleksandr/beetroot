@@ -30,7 +30,7 @@ export class CreatePersonDialogComponent implements OnInit {
   }
   onSave(formData: any) {
     let value = formData.value as Customer;
-    console.log(value);
+
     this._httpService
       .createPerson(value)
       .subscribe(() => this.dialogRef.close());
